@@ -11,6 +11,7 @@ const meta = {
 module.exports = {
   entry: {
     main: './src/index.js',
+    listPage: './src/ListPage/index.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -19,8 +20,16 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'PWA Demo 2019 - Main Page',
+      chunks: ['main'],
       filename: 'index.html',
       template: './src/index.html',
+      meta,
+    }),
+    new HtmlWebpackPlugin({
+      title: 'PWA Demo 2019 - List Page',
+      chunks: ['listPage'],
+      filename: 'list/index.html',
+      template: './src/ListPage/index.html',
       meta,
     })
   ],
