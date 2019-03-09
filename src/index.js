@@ -1,5 +1,11 @@
 import './style.css';
 
+const button = document.querySelector('.button');
+
+button.onclick = () => {
+  location.href = '/list';
+};
+
 const init = () => {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
