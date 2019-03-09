@@ -12,6 +12,7 @@ module.exports = {
   entry: {
     main: './src/index.js',
     listPage: './src/ListPage/index.js',
+    detailPage: './src/DetailPage/index.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -31,7 +32,14 @@ module.exports = {
       filename: 'list/index.html',
       template: './src/ListPage/index.html',
       meta,
-    })
+    }),
+    new HtmlWebpackPlugin({
+      title: 'PWA Demo 2019 - Detail Page',
+      chunks: ['detailPage'],
+      filename: 'detail/index.html',
+      template: './src/DetailPage/index.html',
+      meta,
+    }),
   ],
   module: {
     rules: [
