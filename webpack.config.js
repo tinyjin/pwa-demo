@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const ManifestWebpackPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
@@ -21,6 +23,14 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new ManifestWebpackPlugin({
+      fileName: 'manifest.json',
+      basePath: 'https://pwa-web.herokuapp.com',
+    }),
+    new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: './src/sw.js',
+      swDest: 'sw.js',
+    }),
     new HtmlWebpackPlugin({
       title: 'PWA Demo 2019 - Main Page',
       chunks: ['main'],
