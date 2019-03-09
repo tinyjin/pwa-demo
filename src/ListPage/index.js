@@ -37,7 +37,7 @@ const loadList = (profiles) => {
     const { url } = picture;
 
     listHTML += `
-    <li>
+    <li class="profile">
       <img alt="프로필 사진" class="picture" src="${url}">
       <div class="profile-wrapper">
         <strong class="name">${name}</strong>
@@ -48,4 +48,14 @@ const loadList = (profiles) => {
   }
 
   listView.innerHTML = listHTML;
+
+  const profileElements = document.querySelectorAll('.profile');
+  for (let i = 0, len = profiles.length; i < len; i += 1) {
+    const element = profileElements[i];
+    const { id } = profiles[i];
+
+    element.onclick = () => {
+      location.href = `/detail?id=${id}`;
+    }
+  }
 };
